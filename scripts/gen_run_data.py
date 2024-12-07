@@ -15,8 +15,8 @@ DEFAULT_LIGHT_SAMPLES = 256
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('-r', '--run-db', required=True)
-    ap.add_argument('-', '--output', required=True)
+    ap.add_argument('-d', '--run-db', required=True)
+    ap.add_argument('-o', '--output', required=True)
     args = ap.parse_args()
 
     outf = open(args.output, 'w')

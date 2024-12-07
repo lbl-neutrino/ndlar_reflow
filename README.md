@@ -50,3 +50,15 @@ scripts/gen_input_list.py -d $run_db -o inputs.json
 ```
 
 The resulting `inputs.json` can then be used to prepare jobs for the system of your choice ([FireWorks example](https://github.com/lbl-neutrino/fireworks4dune/tree/develop/scripts/fwsub_reflow.py)). Each job should set up the environment (Python + venv), set the various `ARCUBE_` environment variables, cd into `ndlar_reflow`, and run `scripts/wrap_run_flow.sh` (without any arguments).
+
+## RunData file
+
+Currently, ndlar_flow takes file-specific parameters (e.g. drift field) from a "RunData" text file. Such a file can be generated from the same run DB used above for producing the input list:
+
+``` bash
+scripts/gen_run_data.py -d $run_db -o RunData.txt
+```
+
+(TODO: Remove hardcoded FSD assumptions.)
+
+The resulting `RunData.txt` can then be placed in the default location where ndlar_flow will look for it (`_install/ndlar_flow/data/proto_nd_flow/runlist-2x2-mcexample.txt`, even if we aren't dealing with MC nor with the 2x2). Alternatively, you can edit the appropriate yaml (e.g. `yamls/fsd_flow/resources/RunData.yaml`) to point to your RunData file.

@@ -13,6 +13,12 @@ charge_ext=${charge_relpath##*.}
 outf=$ARCUBE_OUTDIR_BASE/$charge_reldir/$(basename "$charge_relpath" ."$charge_ext").FLOW.hdf5
 logf=$ARCUBE_LOGDIR_BASE/$charge_reldir/$(basename "$charge_relpath" ."$charge_ext").log
 
+script=scripts/run_flow.$ARCUBE_REFLOW_VARIANT.sh
+if [[ ! -e "$script" ]]; then
+    echo "Unable to find $script" 2>&1
+    exit 1
+fi
+
 mkdir -p "$(dirname "$outf")" "$(dirname "$logf")"
 
-scripts/run_flow.sh "$outf" "$chargef" "${lightfs[@]}" | tee -a "$logf"
+"$script" "$outf" "$chargef" "${lightfs[@]}" | tee -a "$logf"
