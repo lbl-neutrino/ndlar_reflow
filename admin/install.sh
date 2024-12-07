@@ -2,14 +2,13 @@
 
 set -o errexit
 
-module load python/3.11
+if [[ -z "$VIRTUAL_ENV" ]]; then
+    echo "Please activate a virtual environment before running this installer"
+    exit 1
+fi
 
 mkdir -p _install
 cd _install
-
-python -m venv ndlar_reflow.venv
-source ndlar_reflow.venv/bin/activate
-pip install --upgrade pip setuptools wheel
 
 git clone -b main https://github.com/lbl-neutrino/h5flow.git
 cd h5flow
