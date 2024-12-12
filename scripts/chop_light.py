@@ -12,10 +12,10 @@ def chop_light(path_in: str, path_out: str):
 
     c2l = cast(Dataset, f_in['/charge/events/ref/light/events/ref'])
     l_evts = cast(Dataset, f_in['/light/events/data'])
-    n_l_evt = cast(int, l_evts.shape[0])
+
     # Get the indices of the first and last CL-matched light event
-    l_evt_ids = cast(Iterable[int], c2l[:, 1])
-    min_light_evt, max_light_evt = min(l_evt_ids), max(l_evt_ids)
+    c2l_l_evt_ids = cast(Iterable[int], c2l[:, 1])
+    min_light_evt, max_light_evt = min(c2l_l_evt_ids), max(c2l_l_evt_ids)
 
     not2chop: list[str] = []
     data2chop: list[str] = []
@@ -47,7 +47,7 @@ def chop_light(path_in: str, path_out: str):
     # know how to slice them
     for name in data2chop + region2chop:
         ds = cast(Dataset, f_in[name])
-        assert ds.shape[0] == n_l_evt
+        assert ds.shape[0] == l_evts.shape[0]
         data = cast(Dataset, ds[min_light_evt:max_light_evt+1])
         f_out.create_dataset(name, data=data)
 
