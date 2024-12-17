@@ -21,6 +21,12 @@ def chop_light(path_in: str, path_out: str):
     def visit(name: str, thing):
         if not isinstance(thing, h5py.Dataset):
             return
+        parts = name.split('/')
+        # special case for charge -> light refs
+        if parts[0] == 'charge' and parts[2] == 'ref' \
+           and parts[3] == 'light' and parts[5] == 'ref':
+            ref2chop.append(name)
+        # beyond that special case we only care about stuff under /light
         if not name.startswith('light'):
             # If it's not under /light, it doesn't need chopping
             not2chop.append(name)
@@ -41,10 +47,19 @@ def chop_light(path_in: str, path_out: str):
 
     # These datasets should all have one entry per light event, so we already
     # know how to slice them
-    for name in data2chop + region2chop:
+    for name in data2chop:
         ds = f_in[name]
         assert ds.shape[0] == l_evts.shape[0]
         data = ds[min_light_evt:max_light_evt+1]
+        f_out.create_dataset(name, data=data)
+
+    # But the regions need to be updated
+    for name in region2chop:
+        ds = f_in[name]
+        assert ds.shape[0] == l_evts.shape[0]
+        data = ds[min_light_evt:max_light_evt+1]
+        # Account for the dropped data at the start
+        data -= min_light_evt
         f_out.create_dataset(name, data=data)
 
     # The ref datasets must be chopped according to whether the "source" (0th)
@@ -53,7 +68,15 @@ def chop_light(path_in: str, path_out: str):
     # all the light datasets have the same shape[0] (= n_light_evt).
     for name in ref2chop:
         ref = f_in[name]
+        parts = name.split('/')
+        shift_src = parts[0] == 'light'
+        shift_dst = parts[3] == 'light'
+
         ref_out = ref[(ref[:, 0] >= min_light_evt) & (ref[:, 0] <= max_light_evt)]
         f_out.create_dataset(name, data=ref_out)
+
+    # now update the ref region?
+
+    # TODO handle charge -> light refs
 
     f_out.close()
