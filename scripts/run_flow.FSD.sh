@@ -35,6 +35,6 @@ h5flow -i "$chargef" -o "$outf" -c \
     "$workflow_charge_event_build" \
     "$workflow_charge_event_reco" \
     "$workflow_comb_reco" \
-    "$workflow_charge_hit_reco_prompt" \
+    "$workflow_charge_hit_reco_prompt"
 
 h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
