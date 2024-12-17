@@ -30,8 +30,8 @@ get_range() {
     ../../scripts/get_light_event_range.py \
         --workflow "$workflow_light_event_build" \
         --chargef "$chargef" \
-        --first-lightf "$(realpath {lightfs[0]})" \
-        --last-lightf "$(realpath {lightfs[-1]})" \
+        --first-lightf "$(realpath "${lightfs[0]}")" \
+        --last-lightf "$(realpath "${lightfs[-1]}")" \
         --tmpdir "$(dirname "$outf")"
 }
 
