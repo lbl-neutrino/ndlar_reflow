@@ -49,7 +49,7 @@ run_db=/global/cfs/cdirs/dune/www/data/FSD/run_db/fsd_run_db.20241125.sqlite
 scripts/gen_input_list.py -d $run_db -o inputs.json
 ```
 
-The resulting `inputs.json` can then be used to prepare jobs for the system of your choice ([FireWorks example](https://github.com/lbl-neutrino/fireworks4dune/tree/develop/scripts/fwsub_reflow.py)). Each job should set up the environment (Python + venv), set the various `ARCUBE_` environment variables, cd into `ndlar_reflow`, and run `scripts/wrap_run_flow.sh` (without any arguments).
+The resulting `inputs.json` can then be used to prepare jobs for the system of your choice ([FireWorks example](https://github.com/lbl-neutrino/fireworks4dune/blob/main/workflows/fwsub.reflow.py)). Each job should set up the environment (Python + venv), set the various `ARCUBE_` environment variables, cd into `ndlar_reflow`, and run `scripts/wrap_run_flow.sh` (without any arguments).
 
 ## RunData file
 
