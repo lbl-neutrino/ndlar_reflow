@@ -1,5 +1,3 @@
-This README is a work in progress.
-
 # ndlar_reflow
 
 Scripts for bulk processing of DUNE ND-LAr data (2x2, FSD) using [ndlar_flow](https://github.com/DUNE/ndlar_flow.git).
