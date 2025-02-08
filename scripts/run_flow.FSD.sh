@@ -35,8 +35,6 @@ get_range() {
         --tmpdir "$(dirname "$outf")"
 }
 
-read -r -a evt_range <<< "$(get_range)"
-
 # Enable compression
 h5flow="h5flow -z lzf"
 
