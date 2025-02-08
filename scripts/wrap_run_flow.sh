@@ -21,4 +21,4 @@ fi
 
 mkdir -p "$(dirname "$outf")" "$(dirname "$logf")"
 
-/usr/bin/time -f "%P %M %E" "$script" "$outf" "$chargef" "${lightfs[@]}" | tee -a "$logf"
+/usr/bin/time -f "%P %M %E" "$script" "$outf" "$chargef" "${lightfs[@]}" 2>&1 | tee -a "$logf"
