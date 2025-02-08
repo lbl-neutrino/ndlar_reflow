@@ -15,7 +15,19 @@ def get_crs2lrs(conn: sqlite3.Connection):
         f" ORDER BY crs_run, crs_subrun, lrs_run, lrs_subrun"
 
     for crs_path, lrs_path in conn.execute(q):
+        if lrs_path is None:
+            print(f'Warning: Missing an LRS file for {crs_path}')
+            continue
         crs2lrs[crs_path].append(lrs_path)
+
+    # ugly hack to get lightless charge files (LEFT JOIN LRS_summary didn't work)
+    q = f"SELECT c.nersc_path from All_global_subruns a" + \
+        f" JOIN CRS_summary c ON (a.crs_run = c.run AND a.crs_subrun = c.subrun)" + \
+        f" ORDER BY crs_run, crs_subrun"
+
+    for (crs_path,) in conn.execute(q):
+        if crs_path not in crs2lrs.keys():
+            crs2lrs[crs_path] = []
 
     return crs2lrs
 
@@ -39,7 +51,7 @@ def main():
         spec = {
             'ARCUBE_CHARGE_FILE': crs_path,
             # hope there ain't no spaces in them paths
-            'ARCUBE_LIGHT_FILES': ' '.join(lrs_paths)
+            'ARCUBE_LIGHT_FILES': ' '.join(lrs_paths) if lrs_paths else '',
         }
         result.append(spec)
 
