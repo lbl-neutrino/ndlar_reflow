@@ -35,22 +35,24 @@ get_range() {
         --tmpdir "$(dirname "$outf")"
 }
 
-read -r -a evt_range <<< "$(get_range)"
+if [[ -n "$lightfs" ]]; then
+    read -r -a evt_range <<< "$(get_range)"
 
-# Run light event building
-for lightf in "${lightfs[@]}"; do
-    extra_args=()
-    if [[ "$lightf" == "${lightfs[0]}" ]]; then
-        extra_args+=("--start_position" "${evt_range[0]}")
-    fi
-    if [[ "$lightf" == "${lightfs[-1]}" ]]; then
-        extra_args+=("--end_position" "${evt_range[1]}")
-    fi
+    # Run light event building
+    for lightf in "${lightfs[@]}"; do
+        extra_args=()
+        if [[ "$lightf" == "${lightfs[0]}" ]]; then
+            extra_args+=("--start_position" "${evt_range[0]}")
+        fi
+        if [[ "$lightf" == "${lightfs[-1]}" ]]; then
+            extra_args+=("--end_position" "${evt_range[1]}")
+        fi
 
-    h5flow -i "$(realpath "$lightf")" -o "$outf" -c "$workflow_light_event_build" "${extra_args[@]}"
-done
+        h5flow -i "$(realpath "$lightf")" -o "$outf" -c "$workflow_light_event_build" "${extra_args[@]}"
+    done
 
-h5flow -i "$outf" -o "$outf" -c "$workflow_light_event_reco"
+    h5flow -i "$outf" -o "$outf" -c "$workflow_light_event_reco"
+fi
 
 h5flow -i "$chargef" -o "$outf" -c \
     "$workflow_charge_event_build" \
@@ -59,4 +61,6 @@ h5flow -i "$chargef" -o "$outf" -c \
     "$workflow_charge_hit_reco_prompt" \
     "$workflow_charge_hit_reco_final"
 
-h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
+if [[ -n "$lightfs" ]]; then
+    h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
+fi

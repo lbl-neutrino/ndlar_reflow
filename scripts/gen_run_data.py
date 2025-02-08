@@ -51,7 +51,7 @@ def main():
         charge_thresholds = DEFAULT_CHARGE_THRESHOLDS
         light_samples = DEFAULT_LIGHT_SAMPLES
 
-        l = f'{e_field} {charge_filename} {light_filename} {charge_thresholds} {light_samples}'
+        l = f'{e_field:.3f} {charge_filename} {light_filename} {charge_thresholds} {light_samples}'
         outf.write(l + '\n')
 
     conn.close()

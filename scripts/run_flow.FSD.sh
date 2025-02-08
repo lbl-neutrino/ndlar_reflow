@@ -16,25 +16,55 @@ workflow_light_event_reco='yamls/fsd_flow/workflows/light/light_event_reconstruc
 # charge-light trigger matching
 workflow_charge_light_match='yamls/fsd_flow/workflows/charge/charge_light_assoc.yaml'
 
-outf=$1; shift
-chargef=$1; shift
+outf=$(realpath "$1"); shift
+chargef=$(realpath "$1"); shift
 read -r -a lightfs <<< "$@"; shift $#
 
 cd _install/ndlar_flow
 
 rm -f "$outf"
 
-# Run light event building
-for lightf in "${lightfs[@]}"; do
-    h5flow -i "$lightf" -o "$outf" -c "$workflow_light_event_build"
-done
+# Figure out what range of events to cover from the light files
 
-h5flow -i "$outf" -o "$outf" -c "$workflow_light_event_reco"
+get_range() {
+    ../../scripts/get_light_event_range.py \
+        --workflow "$workflow_light_event_build" \
+        --chargef "$chargef" \
+        --first-lightf "$(realpath "${lightfs[0]}")" \
+        --last-lightf "$(realpath "${lightfs[-1]}")" \
+        --tmpdir "$(dirname "$outf")"
+}
 
-h5flow -i "$chargef" -o "$outf" -c \
+read -r -a evt_range <<< "$(get_range)"
+
+# Enable compression
+h5flow="h5flow -z lzf"
+
+if [[ -n "$lightfs" ]]; then
+    read -r -a evt_range <<< "$(get_range)"
+
+    # Run light event building
+    for lightf in "${lightfs[@]}"; do
+       extra_args=()
+       if [[ "$lightf" == "${lightfs[0]}" ]]; then
+           extra_args+=("--start_position" "${evt_range[0]}")
+       fi
+       if [[ "$lightf" == "${lightfs[-1]}" ]]; then
+           extra_args+=("--end_position" "${evt_range[1]}")
+       fi
+
+       $h5flow -i "$(realpath "$lightf")" -o "$outf" -c "$workflow_light_event_build" "${extra_args[@]}"
+    done
+
+    # $h5flow -i "$outf" -o "$outf" -c "$workflow_light_event_reco"
+fi
+
+$h5flow -i "$chargef" -o "$outf" -c \
     "$workflow_charge_event_build" \
     "$workflow_charge_event_reco" \
     "$workflow_comb_reco" \
     "$workflow_charge_hit_reco_prompt"
 
-h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
+if [[ -n "$lightfs" ]]; then
+    $h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
+fi
