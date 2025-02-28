@@ -18,7 +18,8 @@ def get_crs2lrs(conn: sqlite3.Connection):
         if lrs_path is None:
             print(f'Warning: Missing an LRS file for {crs_path}')
             continue
-        crs2lrs[crs_path].append(lrs_path)
+        if lrs_path not in crs2lrs[crs_path]:
+            crs2lrs[crs_path].append(lrs_path)
 
     # ugly hack to get lightless charge files (LEFT JOIN LRS_summary didn't work)
     q = f"SELECT c.nersc_path from All_global_subruns a" + \
