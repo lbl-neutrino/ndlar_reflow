@@ -35,7 +35,7 @@ get_range() {
         --tmpdir "$(dirname "$outf")"
 }
 
-if [[ -n "$lightfs" ]]; then
+if [[ -n "${lightfs[0]}" && "$ARCUBE_MODE" != "charge_only" ]]; then
     read -r -a evt_range <<< "$(get_range)"
 
     # Run light event building
@@ -61,6 +61,6 @@ h5flow -i "$chargef" -o "$outf" -c \
     "$workflow_charge_hit_reco_prompt" \
     "$workflow_charge_hit_reco_final"
 
-if [[ -n "$lightfs" ]]; then
+if [[ -n "${lightfs[0]}" && "$ARCUBE_MODE" != "charge_only" ]]; then
     h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
 fi
