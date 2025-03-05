@@ -32,4 +32,4 @@ for f in "${files[@]}"; do
 done
 
 # Get Mx2 data from sandbox v4
-ln -s "$outdir/v4/mx2_data" "$outdir/tag"
+ln -s "$outdir/v4/mx2_data" "$outdir/$tag"
