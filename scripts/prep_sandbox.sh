@@ -25,8 +25,10 @@ indir=/global/cfs/cdirs/dune/www/data/2x2/nearline/flowed_charge/REFLOW
 outdir=/global/cfs/cdirs/dune/www/data/2x2/sandbox
 subdir=beam/july8_2024/nominal_hv
 
+mkdir -p "$outdir/$tag/flow"
+
 for f in "${files[@]}"; do
-    ln -s "$indir/$tag/$subdir/$f" "$outdir/$tag"
+    ln -s "$indir/$tag/$subdir/$f" "$outdir/$tag/flow"
 done
 
 # Get Mx2 data from sandbox v4
