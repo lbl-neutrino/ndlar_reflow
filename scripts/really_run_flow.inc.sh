@@ -5,12 +5,13 @@
 
 set -o errexit
 
-outf=$(realpath "$1"); shift
+true_outf=$(realpath "$1"); shift
 chargef=$(realpath "$1"); shift
 read -r -a lightfs <<< "$@"; shift $#
 
 cd _install/ndlar_flow
 
+outf=$true_outf.tmp
 rm -f "$outf"
 
 # Figure out what range of events to cover from the light files
@@ -67,3 +68,5 @@ fi
 if [[ -n "$lightfs" ]]; then
     $h5flow -i "$outf" -o "$outf" -c "$workflow_charge_light_match"
 fi
+
+mv "$outf" "$true_outf"
