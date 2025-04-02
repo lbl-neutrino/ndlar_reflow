@@ -40,7 +40,7 @@ def main():
                 ON a.global_subrun = s.global_subrun) \
           JOIN CRS_summary c \
                ON c.run = a.crs_run AND c.subrun = a.crs_subrun \
-          JOIN LRS_summary l \
+          LEFT JOIN LRS_summary l \
                ON l.run = a.lrs_run AND l.subrun = a.lrs_subrun'
 
     for row in conn.execute(q):
@@ -50,6 +50,11 @@ def main():
         e_field = -kV * KV_TO_VPERCM[args.config]
         charge_thresholds = DEFAULT_CHARGE_THRESHOLDS
         light_samples = DEFAULT_LIGHT_SAMPLES
+
+        # Use something more distinct than "None", to prevent accidental
+        # matching of a file that happens to have "None" in its path
+        if light_filename is None:
+            light_filename = 'THERE_IS_NO_LIGHT_ONLY_DARKNESS'
 
         l = f'{e_field:.3f} {charge_filename} {light_filename} {charge_thresholds} {light_samples}'
         outf.write(l + '\n')
