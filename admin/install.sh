@@ -22,4 +22,7 @@ cd scripts/proto_nd_scripts
 ./get_proto_nd_input.sh
 cd ../../..
 
-pip install adc64format
+git clone -b main https://github.com/larpix/adc64format.git
+cd adc64format
+pip install -e .
+cd ..
