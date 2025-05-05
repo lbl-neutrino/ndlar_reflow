@@ -28,6 +28,8 @@ get_range() {
 # Enable compression
 h5flow="h5flow -z lzf"
 
+export HDF5_USE_FILE_LOCKING=FALSE
+
 if [[ -n "$lightfs" ]]; then
     read -r -a evt_range <<< "$(get_range)"
 
