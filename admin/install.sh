@@ -15,7 +15,7 @@ cd h5flow
 pip install -e .
 cd ..
 
-git clone -b develop https://github.com/DUNE/ndlar_flow.git
+git clone -b reflow-prep https://github.com/DUNE/ndlar_flow.git
 cd ndlar_flow
 pip install -e .
 cd scripts/proto_nd_scripts
