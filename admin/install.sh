@@ -10,7 +10,7 @@ fi
 mkdir -p _install
 cd _install
 
-git clone -b main https://github.com/lbl-neutrino/h5flow.git
+git clone -b main https://github.com/DUNE/h5flow.git
 cd h5flow
 pip install -e .
 cd ..
