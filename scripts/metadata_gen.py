@@ -1,4 +1,4 @@
-#!/usr/bin/env python-3
+#!/usr/bin/env python3
 
 import argparse
 import json
@@ -11,11 +11,11 @@ import h5py
 
 PACKET_BASE = '/global/cfs/cdirs/dune/www/data/2x2/nearline/packet'
 RAW_BASE = '/global/cfs/cdirs/dune/www/data/2x2/CRS'
-FLOW_BASE = '/global/cfs/cdirs/dune/www/data/2x2/reflows/v10/flow'
+FLOW_BASE = '/global/cfs/cdirs/dune/www/data/2x2/reflows/v11/flow'
 
 RUNS_DB = '/pscratch/sd/m/mkramer/devel/BlobCraft2x2/mx2x2runs_v0.2.sqlite'
 
-FLOW_VERSION = 'v1.4.0'
+FLOW_VERSION = 'v1.5.0'
 CAMPAIGN = 'run1'
 CONFIG_FILE = 'run_flow.2x2.sh'
 
@@ -48,7 +48,7 @@ def packet2flow(packet_path: Path) -> Path:
 
 def format_parents(raw_file: Path, lrs_files: list[Path]):
     raw_filename_hdf5 = raw_file.with_suffix('.hdf5')
-    parents = [{'did': f'neardet-2x2-lar-charge:{raw_filename_hdf5}'}]
+    parents = [{'did': f'neardet-2x2-lar-charge:{raw_filename_hdf5.name}'}]
     for lrs_file in lrs_files:
         parents.append({'did': f'neardet-2x2-lar-light:{lrs_file.name}'})
     return parents
@@ -97,8 +97,8 @@ def metadata_gen(packet_file: Path, lrs_files: list[Path]):
 
     output = {}
     output['parents'] = format_parents(raw_file, lrs_files)
-    output['name'] = packet_file.with_suffix('.FLOW.hdf5').as_posix()
-    output['namespace'] = 'neardet-2x2-lar-flow'
+    output['name'] = packet_file.with_suffix('.FLOW.hdf5').name
+    output['namespace'] = 'neardet-2x2-lar'
     output['creator'] = 'mkramer'
     output['size'] = flow_file.stat().st_size
     output['checksums'] = {'adler32': f'{get_checksum(flow_file):08x}'}
@@ -109,6 +109,7 @@ def metadata_gen(packet_file: Path, lrs_files: list[Path]):
     meta['core.start_time'] = crs_json['metadata']['core.start_time']
     meta['core.end_time'] = crs_json['metadata']['core.end_time']
     meta['core.file_format'] = 'hdf5'
+    meta['core.file_type'] = 'detector'
     meta['core.application.family'] = 'ndlar_flow'
     meta['core.application.name'] = 'flow'
     meta['core.application.version'] = FLOW_VERSION
@@ -133,15 +134,15 @@ def metadata_gen(packet_file: Path, lrs_files: list[Path]):
     meta['dune.ndlar_charge_subrun_numbers'] = crs_subruns
     meta['dune.ndlar_light_subrun_numbers'] = lrs_subruns
 
-    output['meta'] = meta
+    output['metadata'] = meta
 
     print(json.dumps(output, indent=4))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('packet-files')
-    ap.add_argument('lrs-files', nargs='*')
+    ap.add_argument('packet_files', type=Path)
+    ap.add_argument('lrs_files', nargs='*', type=Path)
     args = ap.parse_args()
 
     metadata_gen(args.packet_files, args.lrs_files)
