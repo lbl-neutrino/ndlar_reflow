@@ -54,13 +54,13 @@ def main():
     for crs_path, friends in crs2friends.items():
         lrs_paths = friends['LIGHT']
         spec = {
-            'ARCUBE_CHARGE_FILE': crs_path,
+            'ND_PRODUCTION_CHARGE_FILE': crs_path,
             # hope there ain't no spaces in them paths
-            'ARCUBE_LIGHT_FILES': ' '.join(lrs_paths) if lrs_paths else '',
+            'ND_PRODUCTION_LIGHT_FILES': ' '.join(lrs_paths) if lrs_paths else '',
         }
         if args.include_mx2:
             mx2_paths = friends['MINERVA']
-            spec['ARCUBE_MINERVA_FILES'] = ' '.join(mx2_paths) if mx2_paths else ''
+            spec['ND_PRODUCTION_MINERVA_FILES'] = ' '.join(mx2_paths) if mx2_paths else ''
         result.append(spec)
 
     with open(args.output, 'w') as f:

@@ -29,12 +29,12 @@ The heavy lifting is done by `scripts/run_flow.2x2.sh` (or the `FSD` equivalent)
 - Third and onward, the paths of the light input files (in the DAQ's binary format)
 
 For more convenient integration with workflow management systems (e.g. justIN), there is a wrapper script `scripts/wrap_run_flow.sh` that is controlled by environment variables (rather than command-line arguments) and automatically determines the path of the output file. It expects the following environment variables:
-- `ARCUBE_REFLOW_VARIANT`: Either `2x2` or `FSD`; selects the appropriate inner script
-- `ARCUBE_INDIR_BASE`: The "base directory" for the charge input files (e.g. `/global/cfs/cdirs/dune/www/data/2x2/CRS`). Any further subdirectory structure will be recreated in the output/log directories.
-- `ARCUBE_OUTDIR_BASE`: The base directory where the output HDF5 file will be written (in the appropriate subdirectory, based on the path of the input charge file).
-- `ARCUBE_LOGDIR_BASE`: The directory where the log file will be written (in the appropriate subdirectory).
-- `ARCUBE_CHARGE_FILE`: The full path to the input charge file
-- `ARCUBE_LIGHT_FILES`: A space-separated list of all the input light files
+- `ND_PRODUCTION_REFLOW_VARIANT`: Either `2x2` or `FSD`; selects the appropriate inner script
+- `ND_PRODUCTION_INDIR_BASE`: The "base directory" for the charge input files (e.g. `/global/cfs/cdirs/dune/www/data/2x2/CRS`). Any further subdirectory structure will be recreated in the output/log directories.
+- `ND_PRODUCTION_OUTDIR_BASE`: The base directory where the output HDF5 file will be written (in the appropriate subdirectory, based on the path of the input charge file).
+- `ND_PRODUCTION_LOGDIR_BASE`: The directory where the log file will be written (in the appropriate subdirectory).
+- `ND_PRODUCTION_CHARGE_FILE`: The full path to the input charge file
+- `ND_PRODUCTION_LIGHT_FILES`: A space-separated list of all the input light files
 
 Within a given reflow campaign, these environment "variables" will be constants, except for the last two.
 
@@ -47,7 +47,7 @@ run_db=/global/cfs/cdirs/dune/www/data/FSD/run_db/fsd_run_db.20241125.sqlite
 scripts/gen_input_list.py -d $run_db -o inputs.json
 ```
 
-The resulting `inputs.json` can then be used to prepare jobs for the system of your choice ([FireWorks example](https://github.com/lbl-neutrino/fireworks4dune/blob/main/workflows/fwsub.reflow.py)). Each job should set up the environment (Python + venv), set the various `ARCUBE_` environment variables, cd into `ndlar_reflow`, and run `scripts/wrap_run_flow.sh` (without any arguments).
+The resulting `inputs.json` can then be used to prepare jobs for the system of your choice ([FireWorks example](https://github.com/lbl-neutrino/fireworks4dune/blob/main/workflows/fwsub.reflow.py)). Each job should set up the environment (Python + venv), set the various `ND_PRODUCTION_` environment variables, cd into `ndlar_reflow`, and run `scripts/wrap_run_flow.sh` (without any arguments).
 
 ## RunData file
 
