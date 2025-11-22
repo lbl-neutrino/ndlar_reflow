@@ -15,4 +15,5 @@ workflow_light_event_reco='yamls/fsd_flow/workflows/light/light_event_reconstruc
 # charge-light trigger matching
 workflow_charge_light_match='yamls/fsd_flow/workflows/charge/charge_light_assoc_data.yaml'
 
-source "$(dirname "$0")/really_run_flow.inc.sh"
+inner_script=$1; shift
+source "$inner_script"
