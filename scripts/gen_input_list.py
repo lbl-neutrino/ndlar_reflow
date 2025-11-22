@@ -6,8 +6,14 @@ import json
 import sqlite3
 
 
-def get_crs2friends(conn: sqlite3.Connection, include_mx2: bool):
-    crs2friends = {}
+def get_friends(conn: sqlite3.Connection, basis='charge', include_mx2=False):
+    """
+    Returns a dict where the keys are charge files (if basis is 'charge') or
+    light files (if basis is 'light'), and the values are dicts with keys:
+      'BUDDIES', a list of the corresponding light (or charge) files,
+      'MINERVA', a list of the Mx2 files (if include_mx2 is True)
+    """
+    assert basis in ['charge', 'light']
 
     mx2_cols, mx2_join, mx2_order = '', '', ''
     if include_mx2:
@@ -21,18 +27,24 @@ def get_crs2friends(conn: sqlite3.Connection, include_mx2: bool):
         f" {mx2_join}" + \
         f" ORDER BY crs_run, crs_subrun, lrs_run, lrs_subrun {mx2_order}"
 
+    friends = {}
+
     for row in conn.execute(q):
         crs_path, lrs_path = row[:2]
-        if crs_path not in crs2friends:
-            crs2friends[crs_path] = defaultdict(list)
-        if lrs_path and lrs_path not in crs2friends[crs_path]['LIGHT']:
-            crs2friends[crs_path]['LIGHT'].append(lrs_path)
+        if basis == 'charge':
+            base_path, friend_path = crs_path, lrs_path
+        else:
+            base_path, friend_path = lrs_path, crs_path
+        if base_path not in friends:
+            friends[base_path] = defaultdict(list)
+        if friend_path and friend_path not in friends[base_path]['BUDDIES']:
+            friends[base_path]['BUDDIES'].append(friend_path)
         if include_mx2:
             mx2_path = row[2]
-            if mx2_path and mx2_path not in crs2friends[crs_path]['MINERVA']:
-                crs2friends[crs_path]['MINERVA'].append(mx2_path)
+            if mx2_path and mx2_path not in friends[base_path]['MINERVA']:
+                friends[base_path]['MINERVA'].append(mx2_path)
 
-    return crs2friends
+    return friends
 
 
 def main():
@@ -43,20 +55,27 @@ def main():
     ap.add_argument('-o', '--output',
                     help='Output json file',
                     required=True)
+    ap.add_argument('-b', '--basis', options=['charge', 'light'],
+                    help='Whether each output should correspond to a charge or a light file')
     ap.add_argument('-m', '--include-mx2', action='store_true')
     args = ap.parse_args()
 
     result = []
 
     conn = sqlite3.connect(args.db_file)
-    crs2friends = get_crs2friends(conn, args.include_mx2)
+    crs2friends = get_friends(conn, args.basis, args.include_mx2)
 
-    for crs_path, friends in crs2friends.items():
-        lrs_paths = friends['LIGHT']
+    if args.basis == 'charge':
+        base_key, buddy_key = 'ND_PRODUCTION_CHARGE_FILE', 'ND_PRODUCTION_LIGHT_FILES'
+    else:
+        base_key, buddy_key = 'ND_PRODUCTION_LIGHT_FILE', 'ND_PRODUCTION_CHARGE_FILES'
+
+    for base_path, friends in crs2friends.items():
+        buddy_paths = friends['BUDDIES']
         spec = {
-            'ND_PRODUCTION_CHARGE_FILE': crs_path,
+            base_key: base_path,
             # hope there ain't no spaces in them paths
-            'ND_PRODUCTION_LIGHT_FILES': ' '.join(lrs_paths) if lrs_paths else '',
+            buddy_key: ' '.join(buddy_paths) if buddy_paths else '',
         }
         if args.include_mx2:
             mx2_paths = friends['MINERVA']
