@@ -1,0 +1,38 @@
+[
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/07Nov2024/packet-0020113-2024_11_08_00_36_57_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_07/mpd_run_data_rctl_222_p89.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_07/mpd_run_data_rctl_222_p90.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/07Nov2024/packet-0020113-2024_11_08_03_01_12_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_07/mpd_run_data_rctl_222_p133.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_07/mpd_run_data_rctl_222_p134.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/07Nov2024/packet-0020113-2024_11_08_07_47_33_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_07/mpd_run_data_rctl_222_p220.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_07/mpd_run_data_rctl_222_p221.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/08Nov2024/packet-0020114-2024_11_08_17_54_38_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_224_p18.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/08Nov2024/packet-0020114-2024_11_09_01_00_02_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_224_p147.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_224_p148.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/08Nov2024/packet-0020114-2024_11_09_01_19_00_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_224_p153.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_224_p154.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/config_scan/packet-0020133-2024_11_09_18_44_51_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_243_p29.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_243_p30.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/config_scan/packet-0020133-2024_11_10_02_08_37_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_243_p164.data /dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_243_p165.data"
+    },
+    {
+        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/config_scan/packet-0020133-2024_11_10_06_31_18_CET.h5",
+        "ND_PRODUCTION_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/LRS/data_bin_08/mpd_run_data_rctl_243_p244.data"
+    }
+]

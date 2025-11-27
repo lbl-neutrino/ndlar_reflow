@@ -1,0 +1,50 @@
+[
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_00_04_33_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p124.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p125.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_00_14_34_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p126.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p127.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_00_24_35_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p128.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p129.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_00_34_36_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p130.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p131.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_00_44_37_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p132.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p133.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_00_54_38_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p134.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p135.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_01_04_39_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p136.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p137.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_01_14_40_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p138.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p138.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p138.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p139.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_01_24_41_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p139.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p140.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p141.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_01_34_42_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p141.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p142.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p143.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_01_44_44_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p144.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p145.data"
+    },
+    {
+        "ARCUBE_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/nearline/packet/beam/july8_2024/nominal_hv/packet-0050017-2024_07_09_01_54_45_CDT.h5",
+        "ARCUBE_LIGHT_FILES": "/dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p146.data /dvs_ro/cfs/cdirs/dune/www/data/2x2/LRS/data_bin003/mpd_run_hvramp_rctl_104_p147.data"
+    }
+]
