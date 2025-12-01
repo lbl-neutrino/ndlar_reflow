@@ -7092,10 +7092,6 @@
         "ND_PRODUCTION_LIGHT_FILES": ""
     },
     {
-        "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/config_scan/packet-0020160-2024_11_10_21_26_22_CET.h5",
-        "ND_PRODUCTION_LIGHT_FILES": ""
-    },
-    {
         "ND_PRODUCTION_CHARGE_FILE": "/dvs_ro/cfs/cdirs/dune/www/data/FSD/nearline/packet/CRS/cosmics/config_scan/packet-0020165-2024_11_11_08_07_06_CET.h5",
         "ND_PRODUCTION_LIGHT_FILES": ""
     }
