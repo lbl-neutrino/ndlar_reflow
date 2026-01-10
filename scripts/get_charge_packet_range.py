@@ -26,12 +26,12 @@ def get_limits(lf: h5py.File, first_cf: h5py.File, last_cf: h5py.File,
     # Get corresponding indices in the packets
     pkts = first_cf['packets']
     pkt_type, tstamp = pkts['packet_type'][:], pkts['timestamp'][:]
-    i0 = np.argmax((pkt_type == 4) & (tstamp >= t0 // 1000))
+    i0 = np.argmax((pkt_type == 4) & (tstamp >= t0))
 
     if last_cf is not first_cf:
         pkts = last_cf['packets']
         pkt_type, tstamp = pkts['packet_type'][:], pkts['timestamp'][:]
-    i1 = np.argmax((pkt_type == 4) & (tstamp > t1 // 1000))
+    i1 = np.argmax((pkt_type == 4) & (tstamp > t1))
 
     i0 = max(i0 - start_padding, 0)
     i1 = min(i1 + end_padding, len(pkts))
