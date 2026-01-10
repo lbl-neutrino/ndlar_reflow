@@ -13,7 +13,12 @@ light_reldir=$(dirname "$light_relpath")
 outname=$(basename "$light_relpath" .data)$ND_PRODUCTION_FILE_TAG
 
 # HACK for Run 2:
-outname=$(echo "$outname" | sed 's/mpd_run_data/mpd_run_run2data')
+if [[ "$ND_PRODUCTION_LIGHT_FILE" == *LRS_run2* ]]; then
+    # In MetaCat/Rucio we renamed the files to avoid conflicts with FSD files.
+    # But our input files at NERSC have the original filenames.
+    # So we modify $outname to be consistent with MetaCat/Rucio.
+    outname=$(echo "$outname" | sed 's/mpd_run_data/mpd_run_run2data/')
+fi
 
 outf=$ND_PRODUCTION_OUTDIR_BASE/$light_reldir/$outname.FLOW.hdf5
 logf=$ND_PRODUCTION_LOGDIR_BASE/$light_reldir/$outname.log
