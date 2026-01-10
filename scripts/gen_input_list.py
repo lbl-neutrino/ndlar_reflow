@@ -55,7 +55,7 @@ def main():
     ap.add_argument('-o', '--output',
                     help='Output json file',
                     required=True)
-    ap.add_argument('-b', '--basis', choices=['charge', 'light'],
+    ap.add_argument('-b', '--basis', choices=['charge', 'light'], required=True,
                     help='Whether each output should correspond to a charge or a light file')
     ap.add_argument('-m', '--include-mx2', action='store_true')
     args = ap.parse_args()
