@@ -17,7 +17,7 @@ rm -f "$outf"
 # Figure out what range of packets to cover from the charge files
 get_range() {
     ../../scripts/get_charge_packet_range.py \
-        --lightf "$lightf" \
+        --lightf "$outf" \
         --first-chargef "$(realpath "${chargefs[0]}")" \
         --last-chargef "$(realpath "${chargefs[-1]}")"
 }
