@@ -35,6 +35,8 @@ def get_friends(conn: sqlite3.Connection, basis='charge', include_mx2=False):
             base_path, friend_path = crs_path, lrs_path
         else:
             base_path, friend_path = lrs_path, crs_path
+        if base_path is None:
+            continue
         if base_path not in friends:
             friends[base_path] = defaultdict(list)
         if friend_path and friend_path not in friends[base_path]['FRIENDS']:
