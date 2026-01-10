@@ -47,7 +47,7 @@ if [[ -n "$chargefs" ]]; then
             extra_args+=("--end_position" "${pkt_range[1]}")
         fi
 
-        $h5flow -i "$chargef" -o "$outf" -c "$workflow_charge_event_build"
+        $h5flow -i "$chargef" -o "$outf" -c "$workflow_charge_event_build" "${extra_args[@]}"
     done
 
     # Run charge reco...
