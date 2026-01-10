@@ -9,7 +9,7 @@ workflow_charge_hit_reco_final='yamls/proto_nd_flow/workflows/charge/final_calib
 
 # light workflows
 workflow_light_event_build='yamls/proto_nd_flow/workflows/light/light_event_building_mpd_Run2.yaml'
-workflow_light_event_reco='yamls/proto_nd_flow/workflows/light/light_event_reconstruction_data_Run2.yaml'
+workflow_light_event_reco='yamls/proto_nd_flow/workflows/light/light_event_reconstruction_data.yaml'
 
 # charge-light trigger matching
 workflow_charge_light_match='yamls/proto_nd_flow/workflows/charge/charge_light_assoc_data.yaml'
