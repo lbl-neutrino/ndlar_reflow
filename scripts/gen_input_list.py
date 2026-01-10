@@ -10,7 +10,7 @@ def get_friends(conn: sqlite3.Connection, basis='charge', include_mx2=False):
     """
     Returns a dict where the keys are charge files (if basis is 'charge') or
     light files (if basis is 'light'), and the values are dicts with keys:
-      'BUDDIES', a list of the corresponding light (or charge) files,
+      'FRIENDS', a list of the corresponding light (or charge) files,
       'MINERVA', a list of the Mx2 files (if include_mx2 is True)
     """
     assert basis in ['charge', 'light']
@@ -37,8 +37,8 @@ def get_friends(conn: sqlite3.Connection, basis='charge', include_mx2=False):
             base_path, friend_path = lrs_path, crs_path
         if base_path not in friends:
             friends[base_path] = defaultdict(list)
-        if friend_path and friend_path not in friends[base_path]['BUDDIES']:
-            friends[base_path]['BUDDIES'].append(friend_path)
+        if friend_path and friend_path not in friends[base_path]['FRIENDS']:
+            friends[base_path]['FRIENDS'].append(friend_path)
         if include_mx2:
             mx2_path = row[2]
             if mx2_path and mx2_path not in friends[base_path]['MINERVA']:
@@ -63,19 +63,19 @@ def main():
     result = []
 
     conn = sqlite3.connect(args.db_file)
-    crs2friends = get_friends(conn, args.basis, args.include_mx2)
+    friend_map = get_friends(conn, args.basis, args.include_mx2)
 
     if args.basis == 'charge':
-        base_key, buddy_key = 'ND_PRODUCTION_CHARGE_FILE', 'ND_PRODUCTION_LIGHT_FILES'
+        base_key, friend_key = 'ND_PRODUCTION_CHARGE_FILE', 'ND_PRODUCTION_LIGHT_FILES'
     else:
-        base_key, buddy_key = 'ND_PRODUCTION_LIGHT_FILE', 'ND_PRODUCTION_CHARGE_FILES'
+        base_key, friend_key = 'ND_PRODUCTION_LIGHT_FILE', 'ND_PRODUCTION_CHARGE_FILES'
 
-    for base_path, friends in crs2friends.items():
-        buddy_paths = friends['BUDDIES']
+    for base_path, friends in friend_map.items():
+        friend_paths = friends['FRIENDS']
         spec = {
             base_key: base_path,
             # hope there ain't no spaces in them paths
-            buddy_key: ' '.join(buddy_paths) if buddy_paths else '',
+            friend_key: ' '.join(friend_paths) if friend_paths else '',
         }
         if args.include_mx2:
             mx2_paths = friends['MINERVA']
